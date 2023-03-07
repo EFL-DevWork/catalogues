@@ -8,7 +8,9 @@ import java.util.List;
 
 public interface CategoryRepository extends JpaRepository<Category, Integer> {
 
-    String FIND_CATEGORY = "Select id,name from Category";
+    String FIND_CATEGORY = "Select category_id,name from Category";
     @Query(value = FIND_CATEGORY, nativeQuery = true)
     public List<Object[]> getcategoryNameId();
+
+
 }
