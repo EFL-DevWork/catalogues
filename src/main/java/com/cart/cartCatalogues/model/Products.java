@@ -3,11 +3,10 @@ package com.cart.cartCatalogues.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "product")
 public class Products {
 
     @Id
-    Long product_id;
+    int product_id;
     String product_info;
     String name;
     String image_url;
@@ -34,7 +33,7 @@ public class Products {
     public Products() {
     }
 
-    public Products(Long product_id, String product_info, String name, String image_url, Long price, Category category) {
+    public Products(int product_id, String product_info, String name, String image_url, Long price, Category category) {
         this.product_id = product_id;
         this.product_info = product_info;
         this.name = name;
@@ -43,11 +42,11 @@ public class Products {
         this.category = category;
     }
 
-    public Long getProduct_id() {
+    public int getProduct_id() {
         return product_id;
     }
 
-    public void setProduct_id(Long product_id) {
+    public void setProduct_id(int product_id) {
         this.product_id = product_id;
     }
 
