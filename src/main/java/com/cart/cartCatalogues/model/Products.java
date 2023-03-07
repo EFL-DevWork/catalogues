@@ -1,11 +1,9 @@
 package com.cart.cartCatalogues.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 
 @Entity
+@Table(name = "product")
 public class Products {
 
     @Id

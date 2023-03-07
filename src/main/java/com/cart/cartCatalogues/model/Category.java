@@ -3,10 +3,12 @@ package com.cart.cartCatalogues.model;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 
 import java.util.List;
 
 @Entity
+@Table(name = "categories")
 public class Category {
 
     @Id
@@ -14,16 +16,6 @@ public class Category {
     String name;
     String slug;
     String description;
-    @OneToMany(mappedBy = "category")
-    List<Products> products;
-
-    public List<Products> getProducts() {
-        return products;
-    }
-
-    public void setProducts(List<Products> products) {
-        this.products = products;
-    }
 
     public Category() {
     }
@@ -33,7 +25,6 @@ public class Category {
         this.name = name;
         this.slug = slug;
         this.description = description;
-        this.products = products;
     }
 
     public Long getCategory_id() {
@@ -75,7 +66,6 @@ public class Category {
                 ", name='" + name + '\'' +
                 ", slug='" + slug + '\'' +
                 ", description='" + description + '\'' +
-                ", products=" + products +
                 '}';
     }
 
