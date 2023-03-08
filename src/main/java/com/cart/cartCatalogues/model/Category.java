@@ -2,10 +2,7 @@ package com.cart.cartCatalogues.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-
-import java.util.List;
 
 @Entity
 @Table(name = "categories")
@@ -20,7 +17,7 @@ public class Category {
     public Category() {
     }
 
-    public Category(Long category_id, String name, String slug, String description, List<Products> products) {
+    public Category(Long category_id, String name, String slug, String description) {
         this.category_id = category_id;
         this.name = name;
         this.slug = slug;
