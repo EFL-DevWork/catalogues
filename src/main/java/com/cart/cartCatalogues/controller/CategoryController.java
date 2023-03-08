@@ -1,13 +1,14 @@
 package com.cart.cartCatalogues.controller;
 
+import com.cart.cartCatalogues.exception.ResourceNotFoundException;
 import com.cart.cartCatalogues.model.Category;
+import com.cart.cartCatalogues.model.CategoryNameId;
 import com.cart.cartCatalogues.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -18,32 +19,34 @@ public class CategoryController {
     CategoryService categoryService;
 
     @PostMapping("/create")
-    public ResponseEntity<Category> insertCategories(Category category)
-    {
-        Category newCategory=categoryService.insertCategories(category);
+    public ResponseEntity<Category> insertCategories(Category category) {
+        Category newCategory = categoryService.insertCategories(category);
         return new ResponseEntity<>(newCategory, HttpStatus.CREATED);
 
     }
 
     @GetMapping("/get")
-    public ResponseEntity<List<Object[]>> getCategories()
-    {
-        List<Object[]> category=categoryService.getCategoriesNameAndID();
-        return new ResponseEntity(category, HttpStatus.OK);
+    public ResponseEntity<CategoryNameId> getCategories() {
+        CategoryNameId category = categoryService.getCategoriesNameAndID();
+        return new ResponseEntity<>(category, HttpStatus.OK);
     }
 
     @GetMapping("get/{catId}")
-    public ResponseEntity<Optional<Category>>getByid(@PathVariable("catId") int catId){
-        Optional<Category> getbyId = categoryService.getCategoriesByID(catId);
-        return new ResponseEntity(getbyId,HttpStatus.OK);
+    public ResponseEntity<Optional<Category>> getById(@PathVariable("catId") int catId) {
+        Optional<Category> getById = categoryService.getCategoriesByID(catId);
+        if (getById.isEmpty()) {
+            throw new ResourceNotFoundException("User Not Found wth id: " + catId);
+        }
+        return new ResponseEntity<>(getById, HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{catId}")
-    public ResponseEntity<String>delete(@PathVariable("catId") int catId){
-
+    public void deleteById(@PathVariable("catId") int catId) {
+        Optional<Category> getById = categoryService.getCategoriesByID(catId);
+        if (getById.isEmpty()) {
+            throw new ResourceNotFoundException("User Not Found wth id: " + catId);
+        }
         categoryService.deleteCategoryById(catId);
-        return new ResponseEntity("Category Delete Successfully",HttpStatus.OK);
     }
-
 
 }
