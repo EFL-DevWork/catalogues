@@ -1,12 +1,15 @@
 package com.cart.cartCatalogues.model;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Products {
 
     @Id
-    int product_id;
+    long product_id;
     String product_info;
     String name;
     String image_url;
@@ -33,7 +36,7 @@ public class Products {
     public Products() {
     }
 
-    public Products(int product_id, String product_info, String name, String image_url, Long price, Category category) {
+    public Products(long product_id, String product_info, String name, String image_url, Long price, Category category) {
         this.product_id = product_id;
         this.product_info = product_info;
         this.name = name;
@@ -42,7 +45,7 @@ public class Products {
         this.category = category;
     }
 
-    public int getProduct_id() {
+    public long getProduct_id() {
         return product_id;
     }
 
