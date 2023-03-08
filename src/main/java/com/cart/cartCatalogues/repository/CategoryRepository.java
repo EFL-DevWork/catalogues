@@ -10,7 +10,6 @@ public interface CategoryRepository extends JpaRepository<Category, Integer> {
     String FIND_CATEGORY = "Select category_id,name from Category";
 
     @Query(value = FIND_CATEGORY, nativeQuery = true)
-    public CategoryNameId getCategoryNameId();
-
+    CategoryNameId getCategoryNameId();
 
 }
