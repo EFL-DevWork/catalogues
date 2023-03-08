@@ -26,31 +26,32 @@ public class CategoryServiceTest {
     private CategoryRepository categoryRepository;
     @InjectMocks
     private CategoryService categoryService;
+    Category category = new Category(1L, "myName", "mySlug", "description");
+
 
     @Test
     void shouldCreateNewCategorySuccessfully() {
-        Category category = new Category(1L, "myName", "mySlug", "description");
-
         given(categoryRepository.save(category)).willReturn(category);
     }
 
     @Test
     void shouldReturnExistingCategorySuccessfullyGivenCategoryId() {
-        Category category = new Category(1L, "myName", "mySlug", "description");
         given(categoryRepository.findById(category.getCategory_id().intValue())).willReturn(Optional.of(category));
     }
 
     @Test
     void shouldDeleteExistingCategorySuccessfullyGivenCategoryId() {
-        Category category = new Category(1L, "myName", "mySlug", "description");
         willDoNothing().given(categoryRepository).deleteById(category.getCategory_id().intValue());
+
         categoryService.deleteCategoryById(1);
+
         verify(categoryRepository, times(1)).deleteById(1);
     }
 
     @Test
     void shouldReturnExistingCategorySuccessfullyGivenCategoryNameId() {
         CategoryNameId categoryNameId = new CategoryNameId(1L, "myName");
+
         given(categoryRepository.getCategoryNameId()).willReturn(categoryNameId);
     }
 }
