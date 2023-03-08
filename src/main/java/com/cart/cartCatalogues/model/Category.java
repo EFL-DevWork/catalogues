@@ -2,15 +2,17 @@ package com.cart.cartCatalogues.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 import java.util.List;
 
 @Entity
+@Table(name = "categories")
 public class Category {
 
     @Id
-    int id;
+    Long category_id;
     String name;
     String slug;
     String description;
@@ -18,19 +20,19 @@ public class Category {
     public Category() {
     }
 
-    public Category(int id, String name, String slug, String description, List<Products> products) {
-        this.id = id;
+    public Category(Long category_id, String name, String slug, String description) {
+        this.category_id = category_id;
         this.name = name;
         this.slug = slug;
         this.description = description;
     }
 
-    public int getCategory_id() {
-        return id;
+    public Long getCategory_id() {
+        return category_id;
     }
 
-    public void setCategory_id(int category_id) {
-        this.id = category_id;
+    public void setCategory_id(Long category_id) {
+        this.category_id = category_id;
     }
 
     public String getName() {
@@ -60,7 +62,7 @@ public class Category {
     @Override
     public String toString() {
         return "Category{" +
-                "id=" + id +
+                "category_id=" + category_id +
                 ", name='" + name + '\'' +
                 ", slug='" + slug + '\'' +
                 ", description='" + description + '\'' +
