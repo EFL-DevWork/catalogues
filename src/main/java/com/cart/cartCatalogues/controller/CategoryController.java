@@ -32,7 +32,7 @@ public class CategoryController {
     }
 
     @GetMapping("get/{catId}")
-    public ResponseEntity<Optional<Category>> getById(@PathVariable("catId") int catId) {
+    public ResponseEntity<Optional<Category>> getById(@PathVariable("catId") long catId) {
         Optional<Category> getById = categoryService.getCategoriesByID(catId);
         if (getById.isEmpty()) {
             throw new ResourceNotFoundException("User Not Found wth id: " + catId);
@@ -41,7 +41,7 @@ public class CategoryController {
     }
 
     @DeleteMapping("/delete/{catId}")
-    public void deleteById(@PathVariable("catId") int catId) {
+    public void deleteById(@PathVariable("catId") long catId) {
         Optional<Category> getById = categoryService.getCategoriesByID(catId);
         if (getById.isEmpty()) {
             throw new ResourceNotFoundException("User Not Found wth id: " + catId);

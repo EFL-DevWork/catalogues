@@ -36,16 +36,16 @@ public class CategoryServiceTest {
 
     @Test
     void shouldReturnExistingCategorySuccessfullyGivenCategoryId() {
-        given(categoryRepository.findById(category.getCategory_id().intValue())).willReturn(Optional.of(category));
+        given(categoryRepository.findById((long) category.getId().intValue())).willReturn(Optional.of(category));
     }
 
     @Test
     void shouldDeleteExistingCategorySuccessfullyGivenCategoryId() {
-        willDoNothing().given(categoryRepository).deleteById(category.getCategory_id().intValue());
+        willDoNothing().given(categoryRepository).deleteById((long) category.getId().intValue());
 
         categoryService.deleteCategoryById(1);
 
-        verify(categoryRepository, times(1)).deleteById(1);
+        verify(categoryRepository, times(1)).deleteById(1L);
     }
 
     @Test

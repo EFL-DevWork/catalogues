@@ -1,7 +1,7 @@
 package com.cart.cartCatalogues.controller;
 
 import com.cart.cartCatalogues.exception.ResourceNotFoundException;
-import com.cart.cartCatalogues.model.Products;
+import com.cart.cartCatalogues.model.Product;
 import com.cart.cartCatalogues.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,14 +17,14 @@ public class ProductController {
     ProductService productService;
 
     @PostMapping("/create")
-    public ResponseEntity<Products> insertProduct(Products products) {
-        Products newProducts = productService.insertProducts(products);
-        return new ResponseEntity<>(newProducts, HttpStatus.CREATED);
+    public ResponseEntity<Product> insertProduct(@RequestBody Product product) {
+        Product newProduct = productService.insertProducts(product);
+        return new ResponseEntity<>(newProduct, HttpStatus.CREATED);
     }
 
-    @GetMapping("get/{productId}")
-    public ResponseEntity<Optional<Products>> getById(@PathVariable("productId") long productId) {
-        Optional<Products> getById = productService.getProductsByID(productId);
+    @GetMapping("gets/{productId}")
+    public ResponseEntity<Optional<Product>> getById(@PathVariable("productId") long productId) {
+        Optional<Product> getById = productService.getProductsByID(productId);
         if (getById.isEmpty()) {
             throw new ResourceNotFoundException("User Not Found wth id: " + productId);
         }
@@ -33,7 +33,7 @@ public class ProductController {
 
     @DeleteMapping("/delete/{productId}")
     public void deleteById(@PathVariable("productId") long productId) {
-        Optional<Products> getById = productService.getProductsByID(productId);
+        Optional<Product> getById = productService.getProductsByID(productId);
         if (getById.isEmpty()) {
             throw new ResourceNotFoundException("User Not Found wth id: " + productId);
         }
@@ -41,10 +41,10 @@ public class ProductController {
     }
 
     @GetMapping("get/{categoryId}")
-    public ResponseEntity<Products> getAllProductsByCategoryId(@PathVariable("categoryId") long categoryId) {
-        Products products = productService.getAllProductsById(categoryId);
+    public ResponseEntity<Product> getAllProductsByCategoryId(@PathVariable("categoryId") long categoryId) {
+        Product product = productService.getAllProductsById(categoryId);
 
-        return new ResponseEntity<>(products, HttpStatus.OK);
+        return new ResponseEntity<>(product, HttpStatus.OK);
     }
 
 }

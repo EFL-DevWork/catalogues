@@ -7,7 +7,7 @@ import jakarta.persistence.Id;
 public class Category {
 
     @Id
-    Long category_id;
+    Long id;
     String name;
     String slug;
     String description;
@@ -15,19 +15,19 @@ public class Category {
     public Category() {
     }
 
-    public Category(Long category_id, String name, String slug, String description) {
-        this.category_id = category_id;
+    public Category(Long id, String name, String slug, String description) {
+        this.id = id;
         this.name = name;
         this.slug = slug;
         this.description = description;
     }
 
-    public Long getCategory_id() {
-        return category_id;
+    public Long getId() {
+        return id;
     }
 
-    public void setCategory_id(Long category_id) {
-        this.category_id = category_id;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -57,7 +57,7 @@ public class Category {
     @Override
     public String toString() {
         return "Category{" +
-                "category_id=" + category_id +
+                "category_id=" + id +
                 ", name='" + name + '\'' +
                 ", slug='" + slug + '\'' +
                 ", description='" + description + '\'' +

@@ -6,7 +6,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 
 @Entity
-public class Products {
+public class Product {
 
     @Id
     long product_id;
@@ -33,10 +33,10 @@ public class Products {
         this.category = category;
     }
 
-    public Products() {
+    public Product() {
     }
 
-    public Products(long product_id, String product_info, String name, String image_url, Long price, Category category) {
+    public Product(long product_id, String product_info, String name, String image_url, Long price, Category category) {
         this.product_id = product_id;
         this.product_info = product_info;
         this.name = name;

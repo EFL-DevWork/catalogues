@@ -1,6 +1,6 @@
 package com.cart.cartCatalogues.service;
 
-import com.cart.cartCatalogues.model.Products;
+import com.cart.cartCatalogues.model.Product;
 import com.cart.cartCatalogues.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,12 +12,12 @@ public class ProductService {
     @Autowired
     ProductRepository productRepository;
 
-    public Products insertProducts(Products products) {
-        productRepository.save(products);
-        return products;
+    public Product insertProducts(Product product) {
+        productRepository.save(product);
+        return product;
     }
 
-    public Optional<Products> getProductsByID(long id) {
+    public Optional<Product> getProductsByID(long id) {
         return productRepository.findById(id);
     }
 
@@ -25,7 +25,7 @@ public class ProductService {
         productRepository.deleteById(id);
     }
 
-    public Products getAllProductsById(long category_id) {
+    public Product getAllProductsById(long category_id) {
         return productRepository.getAllProductsByCategoryId(category_id);
     }
 

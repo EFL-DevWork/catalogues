@@ -1,7 +1,7 @@
 package com.cart.cartCatalogues.service;
 
 import com.cart.cartCatalogues.model.Category;
-import com.cart.cartCatalogues.model.Products;
+import com.cart.cartCatalogues.model.Product;
 import com.cart.cartCatalogues.repository.ProductRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -28,30 +28,30 @@ public class ProductServiceTest {
     private ProductService productService;
     Category category = new Category(1L, "myName", "mySlug", "description");
 
-    Products products = new Products(1, "mobile", "android", "url", 100L, category);
+    Product product = new Product(1, "mobile", "android", "url", 100L, category);
 
 
     @Test
     void shouldCreateNewProductSuccessfully() {
-        given(productRepository.save(products)).willReturn(products);
+        given(productRepository.save(product)).willReturn(product);
     }
 
     @Test
     void shouldReturnExistingProductSuccessfullyGivenCategoryId() {
-        given(productRepository.findById(products.getProduct_id())).willReturn(Optional.of(products));
+        given(productRepository.findById(product.getProduct_id())).willReturn(Optional.of(product));
     }
 
     @Test
     void shouldDeleteExistingProductSuccessfullyGivenCategoryId() {
-        willDoNothing().given(productRepository).deleteById(products.getProduct_id());
+        willDoNothing().given(productRepository).deleteById(product.getProduct_id());
 
-        productService.deleteProductsById(products.getProduct_id());
+        productService.deleteProductsById(product.getProduct_id());
 
-        verify(productRepository, times(1)).deleteById(products.getProduct_id());
+        verify(productRepository, times(1)).deleteById(product.getProduct_id());
     }
 
     @Test
     void shouldReturnAllProductsForCategorySuccessfullyGivenCategoryId() {
-        given(productRepository.getAllProductsByCategoryId(category.getCategory_id())).willReturn(products);
+        given(productRepository.getAllProductsByCategoryId(category.getId())).willReturn(product);
     }
 }
