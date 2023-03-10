@@ -1,15 +1,16 @@
 package com.cart.cartCatalogues.repository;
 
 import com.cart.cartCatalogues.model.Category;
-import com.cart.cartCatalogues.model.CategoryNameId;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-public interface CategoryRepository extends JpaRepository<Category, Long> {
+import java.util.List;
 
-    String FIND_CATEGORY = "Select id,name from Category";
+public interface CategoryRepository extends JpaRepository<Category, Integer> {
+
+    String FIND_CATEGORY = "Select id,name from category";
 
     @Query(value = FIND_CATEGORY, nativeQuery = true)
-    CategoryNameId getCategoryNameId();
+    List<Object[]> getCategoryNameId();
 
 }

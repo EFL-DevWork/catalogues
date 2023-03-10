@@ -1,11 +1,11 @@
 package com.cart.cartCatalogues.service;
 
 import com.cart.cartCatalogues.model.Category;
-import com.cart.cartCatalogues.model.CategoryNameId;
 import com.cart.cartCatalogues.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -18,16 +18,16 @@ public class CategoryService {
         return category;
     }
 
-    public CategoryNameId getCategoriesNameAndID() {
+    public List<Object[]> getCategoriesNameAndID() {
         return categoryRepository.getCategoryNameId();
     }
 
-    public Optional<Category> getCategoriesByID(long id)
-    {
+    public Optional<Category> getCategoriesByID(int id) {
+
         return categoryRepository.findById(id);
     }
 
-    public void deleteCategoryById(long id) {
+    public void deleteCategoryById(int id) {
         categoryRepository.deleteById(id);
     }
 

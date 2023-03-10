@@ -4,11 +4,13 @@ import com.cart.cartCatalogues.model.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-public interface ProductRepository extends JpaRepository<Product, Long> {
+import java.util.List;
 
-    String FIND_ALL_PRODUCTS = "Select * from Products where category_id=?";
+public interface ProductRepository extends JpaRepository<Product, Integer> {
+
+    String FIND_ALL_PRODUCTS = "Select * from product where category_id=?";
 
     @Query(value = FIND_ALL_PRODUCTS, nativeQuery = true)
-    Product getAllProductsByCategoryId(long category_id);
+    List<Product> getAllProductsByCategoryId(int category_id);
 
 }

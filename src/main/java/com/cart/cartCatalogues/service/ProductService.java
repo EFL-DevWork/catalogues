@@ -7,6 +7,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+import java.util.List;
+import java.util.Optional;
+
 @Service
 public class ProductService {
     @Autowired
@@ -17,16 +20,17 @@ public class ProductService {
         return product;
     }
 
-    public Optional<Product> getProductsByID(long id) {
+    public Optional<Product> getProductsByID(int id) {
         return productRepository.findById(id);
     }
 
-    public void deleteProductsById(long id) {
+    public void deleteProductsById(int id) {
         productRepository.deleteById(id);
     }
 
-    public Product getAllProductsById(long category_id) {
+    public List<Product> getAllProductsById(int category_id) {
         return productRepository.getAllProductsByCategoryId(category_id);
     }
+
 
 }

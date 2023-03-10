@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -22,8 +23,8 @@ public class ProductController {
         return new ResponseEntity<>(newProduct, HttpStatus.CREATED);
     }
 
-    @GetMapping("gets/{productId}")
-    public ResponseEntity<Optional<Product>> getById(@PathVariable("productId") long productId) {
+    @GetMapping("/get/productId/{productId}")
+    public ResponseEntity<Optional<Product>> getById(@PathVariable("productId") int productId) {
         Optional<Product> getById = productService.getProductsByID(productId);
         if (getById.isEmpty()) {
             throw new ResourceNotFoundException("User Not Found wth id: " + productId);
@@ -32,7 +33,7 @@ public class ProductController {
     }
 
     @DeleteMapping("/delete/{productId}")
-    public void deleteById(@PathVariable("productId") long productId) {
+    public void deleteById(@PathVariable("productId") int productId) {
         Optional<Product> getById = productService.getProductsByID(productId);
         if (getById.isEmpty()) {
             throw new ResourceNotFoundException("User Not Found wth id: " + productId);
@@ -40,9 +41,9 @@ public class ProductController {
         productService.deleteProductsById(productId);
     }
 
-    @GetMapping("get/{categoryId}")
-    public ResponseEntity<Product> getAllProductsByCategoryId(@PathVariable("categoryId") long categoryId) {
-        Product product = productService.getAllProductsById(categoryId);
+    @GetMapping("/get/categoryId/{categoryId}")
+    public ResponseEntity<List<Product>> getAllProductsByCategoryId(@PathVariable("categoryId") int categoryId) {
+        List<Product> product = productService.getAllProductsById(categoryId);
 
         return new ResponseEntity<>(product, HttpStatus.OK);
     }

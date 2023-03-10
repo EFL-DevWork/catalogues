@@ -11,6 +11,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.junit.jupiter.MockitoSettings;
 import org.mockito.quality.Strictness;
 
+import java.util.List;
 import java.util.Optional;
 
 import static org.mockito.BDDMockito.given;
@@ -26,9 +27,12 @@ public class ProductServiceTest {
     private ProductRepository productRepository;
     @InjectMocks
     private ProductService productService;
-    Category category = new Category(1L, "myName", "mySlug", "description");
+    Category category = new Category(1, "myName", "mySlug", "description");
 
     Product product = new Product(1, "mobile", "android", "url", 100L, category);
+    Product newProduct = new Product(2, "mobile", "android", "url", 100L, category);
+
+    List<Product> productList = List.of(product, newProduct);
 
 
     @Test
@@ -52,6 +56,6 @@ public class ProductServiceTest {
 
     @Test
     void shouldReturnAllProductsForCategorySuccessfullyGivenCategoryId() {
-        given(productRepository.getAllProductsByCategoryId(category.getId())).willReturn(product);
+        given(productRepository.getAllProductsByCategoryId(category.getId())).willReturn(productList);
     }
 }

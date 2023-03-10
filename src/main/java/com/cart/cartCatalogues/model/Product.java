@@ -1,18 +1,21 @@
 package com.cart.cartCatalogues.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.Setter;
 
 @Entity
+@Getter
+@Setter
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @AllArgsConstructor
 public class Product {
-    @Getter
+
     @Id
-    long product_id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    int product_id;
     String product_info;
     String name;
     String image_url;
@@ -20,4 +23,6 @@ public class Product {
     @ManyToOne(fetch = FetchType.LAZY)
     Category category;
 
+    public Product() {
+    }
 }
