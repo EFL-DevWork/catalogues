@@ -1,8 +1,8 @@
 package com.cart.cartCatalogues.service;
 
-import com.cart.cartCatalogues.commonPackage.ListMixin;
 import com.cart.cartCatalogues.model.Category;
 import com.cart.cartCatalogues.repository.CategoryRepository;
+import com.thoughtworks.commonpackage.util.ListMixin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +16,7 @@ import java.util.stream.Stream;
 @Service
 public class CategoryService implements ListMixin<Category> {
 
-    private List<Category> categories=new ArrayList<>();
+    private List<Category> categories = new ArrayList<>();
     @Autowired
     CategoryRepository categoryRepository;
 

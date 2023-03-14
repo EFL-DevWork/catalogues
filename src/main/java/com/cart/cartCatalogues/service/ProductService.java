@@ -1,19 +1,12 @@
 package com.cart.cartCatalogues.service;
 
-import com.cart.cartCatalogues.commonPackage.ListMixin;
 import com.cart.cartCatalogues.model.Product;
 import com.cart.cartCatalogues.repository.ProductRepository;
+import com.thoughtworks.commonpackage.util.ListMixin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
-
-import java.util.Optional;
-import java.util.function.Consumer;
-import java.util.function.IntFunction;
-import java.util.function.Predicate;
-import java.util.function.UnaryOperator;
-import java.util.stream.Stream;
 
 @Service
 public class ProductService implements ListMixin<Product> {
@@ -46,16 +39,6 @@ public class ProductService implements ListMixin<Product> {
     }
 
     @Override
-    public int size() {
-        return products.size();
-    }
-
-    @Override
-    public boolean isEmpty() {
-        return products.isEmpty();
-    }
-
-    @Override
     public boolean contains(Object o) {
         return false;
     }
@@ -66,11 +49,6 @@ public class ProductService implements ListMixin<Product> {
     }
 
     @Override
-    public void forEach(Consumer<? super Product> action) {
-        ListMixin.super.forEach(action);
-    }
-
-    @Override
     public Object[] toArray() {
         return new Object[0];
     }
@@ -78,11 +56,6 @@ public class ProductService implements ListMixin<Product> {
     @Override
     public <T> T[] toArray(T[] a) {
         return null;
-    }
-
-    @Override
-    public <T> T[] toArray(IntFunction<T[]> generator) {
-        return ListMixin.super.toArray(generator);
     }
 
     @Override
@@ -116,23 +89,8 @@ public class ProductService implements ListMixin<Product> {
     }
 
     @Override
-    public boolean removeIf(Predicate<? super Product> filter) {
-        return ListMixin.super.removeIf(filter);
-    }
-
-    @Override
     public boolean retainAll(Collection<?> c) {
         return false;
-    }
-
-    @Override
-    public void replaceAll(UnaryOperator<Product> operator) {
-        ListMixin.super.replaceAll(operator);
-    }
-
-    @Override
-    public void sort(Comparator<? super Product> c) {
-        ListMixin.super.sort(c);
     }
 
     @Override
@@ -183,20 +141,5 @@ public class ProductService implements ListMixin<Product> {
     @Override
     public List<Product> subList(int fromIndex, int toIndex) {
         return null;
-    }
-
-    @Override
-    public Spliterator<Product> spliterator() {
-        return ListMixin.super.spliterator();
-    }
-
-    @Override
-    public Stream<Product> stream() {
-        return ListMixin.super.stream();
-    }
-
-    @Override
-    public Stream<Product> parallelStream() {
-        return ListMixin.super.parallelStream();
     }
 }
